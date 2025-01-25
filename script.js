@@ -28,7 +28,6 @@ function switchMode() {
     isWorkTime = !isWorkTime;
     timeLeft = isWorkTime ? WORK_TIME : BREAK_TIME;
     modeText.textContent = isWorkTime ? 'Work Time' : 'Break Time';
-    toggleButton.textContent = isWorkTime ? 'Switch to Break' : 'Switch to Work';
     toggleButton.className = isWorkTime ? 'work-mode' : 'break-mode';
     updateDisplay();
 }
@@ -92,5 +91,4 @@ timeLeft = WORK_TIME;
 updateDisplay();
 
 // Initialize the toggle button text
-toggleButton.textContent = 'Switch to Break';
 toggleButton.className = 'work-mode'; 
