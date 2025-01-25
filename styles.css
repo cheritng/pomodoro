@@ -88,13 +88,13 @@ h1 {
 
 #toggle-mode {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
+    top: 1.5rem;          /* Increased top spacing */
+    right: 1.5rem;        /* Increased right spacing */
     background-color: #F1F3F9;
     color: var(--text);
-    padding: 0.75rem;
-    width: 4rem;
-    height: 4rem;
+    padding: 0;           /* Removed padding */
+    width: 3rem;          /* Reduced size for better mobile display */
+    height: 3rem;         /* Reduced size for better mobile display */
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -103,6 +103,8 @@ h1 {
     cursor: pointer;
     transition: all 0.2s ease;
     border: none;
+    min-width: unset;     /* Prevent button from stretching */
+    flex: none;           /* Prevent button from growing/shrinking */
 }
 
 #toggle-mode:hover {
@@ -298,5 +300,12 @@ h1 {
     .controls button {
         flex: 1 1 auto;  /* Buttons take equal width */
         min-width: 120px;  /* Minimum button width */
+    }
+
+    #toggle-mode {
+        width: 2.75rem;   /* Slightly smaller on mobile */
+        height: 2.75rem;  /* Slightly smaller on mobile */
+        top: 1rem;        /* Adjust positioning on mobile */
+        right: 1rem;      /* Adjust positioning on mobile */
     }
 } 
