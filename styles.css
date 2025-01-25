@@ -1,0 +1,116 @@
+:root {
+    --primary: #00B5A3;
+    --primary-dark: #009688;
+    --secondary: #FF6B6B;
+    --secondary-dark: #FF5252;
+    --background: #F8F9FD;
+    --surface: #FFFFFF;
+    --text: #2D3436;
+    --text-secondary: #636E72;
+    --shadow: rgba(0, 181, 163, 0.1);
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: var(--background);
+    color: var(--text);
+}
+
+.container {
+    text-align: center;
+    background-color: var(--surface);
+    padding: 3rem;
+    border-radius: 24px;
+    box-shadow: 0 12px 32px var(--shadow);
+    width: 90%;
+    max-width: 480px;
+}
+
+h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: var(--text);
+}
+
+.timer {
+    font-size: 6rem;
+    font-weight: 700;
+    margin: 2rem 0;
+    color: var(--primary);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -2px;
+}
+
+.controls {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.controls button {
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.875rem 1.5rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+}
+
+#start {
+    background-color: var(--primary);
+    color: white;
+}
+
+#start:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+#reset {
+    background-color: #F1F3F9;
+    color: var(--text);
+}
+
+#reset:hover {
+    background-color: #E4E7F0;
+    transform: translateY(-1px);
+}
+
+#toggle-mode {
+    background-color: #F1F3F9;
+    color: var(--text);
+}
+
+#toggle-mode:hover {
+    background-color: #E4E7F0;
+    transform: translateY(-1px);
+}
+
+#toggle-mode.work-mode {
+    background-color: var(--primary);
+    color: white;
+}
+
+#toggle-mode.break-mode {
+    background-color: var(--secondary);
+    color: white;
+}
+
+#toggle-mode.break-mode:hover {
+    background-color: var(--secondary-dark);
+}
+
+.mode {
+    margin-top: 1.5rem;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+} 
