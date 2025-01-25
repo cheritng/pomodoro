@@ -8,6 +8,7 @@ const startButton = document.getElementById('start');
 const resetButton = document.getElementById('reset');
 const modeText = document.getElementById('mode-text');
 const toggleButton = document.getElementById('toggle-mode');
+const addTimeButton = document.getElementById('add-time');
 
 const WORK_TIME = 25 * 60; // 30 minutes in seconds
 const BREAK_TIME = 5 * 60; // 5 minutes in seconds
@@ -61,12 +62,87 @@ function resetTimer() {
     timeLeft = WORK_TIME;
     modeText.textContent = 'Work Time';
     startButton.textContent = 'Start';
+    document.getElementById('focus-task').classList.add('hidden');
     updateDisplay();
 }
 
-startButton.addEventListener('click', () => {
+function addFiveMinutes() {
+    timeLeft += 5 * 60; // Add 5 minutes (300 seconds)
+    updateDisplay();
+}
+
+function createFocusModal() {
+    const modal = document.createElement('div');
+    modal.className = 'focus-modal';
+    modal.innerHTML = `
+        <div class="focus-modal-content">
+            <h2>What are you focusing on?</h2>
+            <input type="text" id="focus-input" placeholder="Enter your focus task...">
+            <div class="modal-buttons">
+                <button id="focus-submit">Start Focusing</button>
+                <button id="focus-cancel">Cancel</button>
+            </div>
+        </div>
+    `;
+    return modal;
+}
+
+function promptForFocusTask() {
+    return new Promise((resolve) => {
+        const modal = createFocusModal();
+        document.body.appendChild(modal);
+        
+        const input = modal.querySelector('#focus-input');
+        input.focus();
+
+        // Function to close modal
+        const closeModal = () => {
+            document.body.removeChild(modal);
+            resolve(false);
+        };
+
+        // Close on outside click
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Close on escape key
+        document.addEventListener('keydown', function escapeHandler(e) {
+            if (e.key === 'Escape') {
+                document.removeEventListener('keydown', escapeHandler);
+                closeModal();
+            }
+        });
+
+        modal.querySelector('#focus-submit').addEventListener('click', () => {
+            const task = input.value.trim();
+            if (task) {
+                const focusTaskElement = document.getElementById('focus-task');
+                const focusTextElement = document.getElementById('focus-text');
+                focusTextElement.textContent = task;
+                focusTaskElement.classList.remove('hidden');
+                document.body.removeChild(modal);
+                resolve(true);
+            }
+        });
+
+        modal.querySelector('#focus-cancel').addEventListener('click', closeModal);
+
+        input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                modal.querySelector('#focus-submit').click();
+            }
+        });
+    });
+}
+
+startButton.addEventListener('click', async () => {
     if (timerId === null) {
-        startTimer();
+        if (!isWorkTime || !document.getElementById('focus-task').classList.contains('hidden') || await promptForFocusTask()) {
+            startTimer();
+        }
     } else {
         clearInterval(timerId);
         timerId = null;
@@ -85,6 +161,8 @@ toggleButton.addEventListener('click', () => {
     }
     switchMode();
 });
+
+addTimeButton.addEventListener('click', addFiveMinutes);
 
 // Initialize the display
 timeLeft = WORK_TIME;

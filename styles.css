@@ -24,12 +24,13 @@ body {
 .container {
     text-align: center;
     background-color: var(--surface);
-    padding: 3rem;
+    padding: 2rem 1.5rem;  /* Reduced padding for mobile */
     border-radius: 24px;
     box-shadow: 0 12px 32px var(--shadow);
     width: 90%;
     max-width: 480px;
     position: relative;
+    margin: 0 1rem; /* Added horizontal margin */
 }
 
 h1 {
@@ -158,4 +159,144 @@ h1 {
     font-size: 1rem;
     color: var(--text-secondary);
     font-weight: 500;
+}
+
+#add-time {
+    background-color: #F8F9FD;  /* Even lighter than the reset button */
+    color: var(--text-secondary);
+    border: 1px solid #E4E7F0;
+}
+
+#add-time:hover {
+    background-color: #F1F3F9;
+    transform: translateY(-1px);
+}
+
+#add-time:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.focus-task {
+    margin: 1rem 0;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--primary);
+    color: white;
+    border-radius: 12px;
+    font-weight: 500;
+    display: inline-block;
+}
+
+.focus-task .focus-label {
+    opacity: 0.8;
+    font-size: 0.875rem;
+    margin-right: 0.5rem;
+}
+
+.focus-task #focus-text {
+    font-weight: 600;
+}
+
+.hidden {
+    display: none;
+}
+
+.focus-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    cursor: pointer; /* Indicates clickable backdrop */
+}
+
+.focus-modal-content {
+    background-color: var(--surface);
+    padding: 1.5rem;  /* Reduced padding for mobile */
+    border-radius: 24px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);  /* Adjusted shadow */
+    width: 85%;  /* Slightly reduced width */
+    max-width: 400px;
+    cursor: default;
+    margin: 0 1rem;  /* Added horizontal margin */
+}
+
+.focus-modal-content h2 {
+    margin-top: 0;
+    color: var(--text);
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.focus-modal-content input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid var(--primary);
+    border-radius: 12px;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+.focus-modal-content input:focus {
+    outline: none;
+    border-color: var(--primary-dark);
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+.modal-buttons button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.modal-buttons button#focus-submit {
+    background-color: var(--primary);
+    color: white;
+}
+
+.modal-buttons button#focus-submit:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+.modal-buttons button#focus-cancel {
+    background-color: transparent;
+    color: var(--text-secondary);
+}
+
+.modal-buttons button#focus-cancel:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    transform: translateY(-1px);
+}
+
+@media (max-width: 480px) {
+    .timer {
+        font-size: 4.5rem;  /* Smaller font size on mobile */
+    }
+
+    .controls {
+        flex-wrap: wrap;  /* Allow buttons to wrap on small screens */
+    }
+
+    .controls button {
+        flex: 1 1 auto;  /* Buttons take equal width */
+        min-width: 120px;  /* Minimum button width */
+    }
 } 
